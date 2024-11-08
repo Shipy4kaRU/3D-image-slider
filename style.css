@@ -1,0 +1,62 @@
+.slider__section {
+  width: 100%;
+  height: 100vh;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.slider {
+  position: absolute;
+  width: 170px;
+  height: 200px;
+  top: 10%;
+  left: 50%;
+  transform-style: preserve-3d;
+  animation: runSlide 60s linear infinite;
+  z-index: 1;
+  /*Общие стили:*/
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.slider__el {
+  position: absolute;
+  inset: 0 0 0 0;
+  transform: rotateY(
+      calc((var(--position) - 1) * (360 / var(--quantity)) * 1deg)
+    )
+    translateZ(550px);
+}
+
+.slider__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal {
+  width: 100%;
+  height: 75vh;
+  position: absolute;
+  display: block;
+  left: -0.3%;
+  bottom: 0;
+  background-size: auto 110%;
+  background-position: top center;
+  background-image: url("./img/model.png");
+  background-repeat: no-repeat;
+}
+
+/* Анимация прокручивания и возврата к изначальному состоянию */
+@keyframes runSlide {
+  from {
+    transform: translateX(-50%) rotateX(-16deg) perspective(1000px)
+      rotateY(0deg);
+  }
+  to {
+    transform: translateX(-50%) rotateX(-16deg) perspective(1000px)
+      rotateY(360deg);
+  }
+}
